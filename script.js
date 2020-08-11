@@ -5,6 +5,7 @@ new Vue({
     monsterHealth: 100,
     gameIsRunning: false,
     turns: [],
+    currentTurn: 0,
   },
   methods: {
     startGame() {
@@ -20,7 +21,9 @@ new Vue({
       this.turns.unshift({
         isPlayer: true,
         text: "Player hits Monster for " + damage,
+        id: this.currentTurn + 1,
       });
+      this.currentTurn++;
 
       if (this.checkWin()) {
         return; // Return for so if return true, i dont continue the code execution
@@ -35,7 +38,9 @@ new Vue({
       this.turns.unshift({
         isPlayer: true,
         text: "Player hits Monster Hard for " + damage,
+        id: this.currentTurn + 1,
       });
+      this.currentTurn++;
 
       if (this.checkWin()) {
         return; // Return for so if return true, i dont continue the code execution
@@ -52,7 +57,9 @@ new Vue({
       this.turns.unshift({
         isPlayer: true,
         text: "Player heals for 10",
+        id: this.currentTurn + 1,
       });
+      this.currentTurn++;
 
       this.monsterAttack();
     },
@@ -71,7 +78,9 @@ new Vue({
       this.turns.unshift({
         isPlayer: false,
         text: "Monster hits Player for " + damage,
+        id: this.currentTurn + 1,
       });
+      this.currentTurn++;
 
       this.checkWin();
     },
